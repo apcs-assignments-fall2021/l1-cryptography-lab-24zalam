@@ -2,13 +2,56 @@ import java.util.Scanner;
 
 public class Vigenere {
     public static String encryptVigenere(String message, String key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String newss="";
+        String alphabet="abcdefghijklmnopqrstuvwxyz";
+        String alph2="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        int keys=Integer.parseInt(key);
+
+        for(int i=0; i<=message.length()-1;i++) {
+            int smth = alphabet.indexOf(message.charAt(i));
+            if (smth==-1) {
+                smth = alph2.indexOf(message.charAt(i));
+                if (smth == -1) {
+                    newss=newss+message.charAt(i);
+                    continue;
+                }
+                int smth2 = (keys+smth) % 26;
+                char ch = alph2.charAt(smth2);
+                newss = newss + ch;
+                continue;
+            }
+            int smth2 = (keys+smth) % 26;
+            char ch = alphabet.charAt(smth2);
+            newss = newss + ch;
+        }
+        return newss;
     }
 
+
+
     public static String decryptVigenere(String message, String key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String news="";
+        String alphabet="abcdefghijklmnopqrstuvwxyz";
+        String alph2="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        int keys=Integer.parseInt(key);
+        for(int i=0; i<=message.length()-1;i++) {
+            int smth = alphabet.indexOf(message.charAt(i));
+            if (smth==-1) {
+                smth = alph2.indexOf(message.charAt(i));
+                if (smth == -1) {
+                    news=news+message.charAt(i);
+                    continue;
+                }
+                int smth2 = (smth-keys) % 26;
+                char ch = alph2.charAt(smth2);
+                news = news + ch;
+                continue;
+            }
+            int smth2 = (smth-keys) % 26;
+            char ch = alphabet.charAt(smth2);
+            news = news + ch;
+        }
+        return news;
     }
 
 
