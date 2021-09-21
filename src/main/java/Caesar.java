@@ -48,12 +48,12 @@ public class Caesar {
                     news=news+message.charAt(i);
                     continue;
                 }
-                int smth2 = (smth-3) % 26;
+                int smth2 = ((smth-3) +26)% 26;
                 char ch = alph2.charAt(smth2);
                 news = news + ch;
                 continue;
             }
-            int smth2 = (smth-3) % 26;
+            int smth2 = ((smth-3)+26)% 26;
             char ch = alphabet.charAt(smth2);
             news = news + ch;
         }
@@ -106,12 +106,12 @@ public class Caesar {
                     news=news+message.charAt(i);
                     continue;
                 }
-                int smth2 = (smth-key) % 26;
+                int smth2 = ((smth-key)+26) % 26;
                 char ch = alph2.charAt(smth2);
                 news = news + ch;
                 continue;
             }
-            int smth2 = (smth-key) % 26;
+            int smth2 = ((smth-key)+26) % 26;
             char ch = alphabet.charAt(smth2);
             news = news + ch;
         }
