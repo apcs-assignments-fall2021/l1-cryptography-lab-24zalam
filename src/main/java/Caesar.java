@@ -94,28 +94,28 @@ public class Caesar {
     // the String using the given key and returns the original String
     // Ex. decryptCaesarKey("Mjqqt, Btwqi!", 5) => "Hello, World!"
     public static String decryptCaesarKey(String message, int key) {
-        String news="";
+        String newstring="";
         String alphabet="abcdefghijklmnopqrstuvwxyz";
         String alph2="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-        for(int i=0; i<=message.length()-1;i++) {
-            int smth = alphabet.indexOf(message.charAt(i));
-            if (smth==-1) {
-                smth = alph2.indexOf(message.charAt(i));
-                if (smth == -1) {
-                    news=news+message.charAt(i);
+        for(int i=0; i<message.length();i++) {
+            int alphchar = alphabet.indexOf(message.charAt(i));
+            if (alphchar==-1) {
+                alphchar = alph2.indexOf(message.charAt(i));
+                if (alphchar == -1) {
+                    newstring=newstring+message.charAt(i);
                     continue;
                 }
-                int smth2 = ((smth-key)+26) % 26;
+                int smth2 = ((alphchar-key)+26) % 26;
                 char ch = alph2.charAt(smth2);
-                news = news + ch;
+                newstring = newstring + ch;
                 continue;
             }
-            int smth2 = ((smth-key)+26) % 26;
+            int smth2 = ((alphchar-key)+26) % 26;
             char ch = alphabet.charAt(smth2);
-            news = news + ch;
+            newstring = newstring + ch;
         }
-        return news;
+        return newstring;
     }
 
 

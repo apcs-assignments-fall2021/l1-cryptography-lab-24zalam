@@ -1,62 +1,78 @@
 import java.util.Scanner;
 
+
+
 public class Vigenere {
+
+
+    public static char encryptCaesarLetter(char ch, int key) {
+       String str=ch+"";
+       String encrypted=Caesar.encryptCaesarKey(str,key);
+        return encrypted.charAt(0);
+    }
+
+
+
+
+
+
+//HELLO, WORLD
+    //CAR
     public static String encryptVigenere(String message, String key) {
-        String newss="";
-        String alphabet="abcdefghijklmnopqrstuvwxyz";
-        String alph2="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        int keys=Integer.parseInt(key);
-
-        for(int i=0; i<=message.length()-1;i++) {
-            int smth = alphabet.indexOf(message.charAt(i));
-            if (smth==-1) {
-                smth = alph2.indexOf(message.charAt(i));
-                if (smth == -1) {
-                    newss=newss+message.charAt(i);
-                    continue;
-                }
-                int smth2 = (keys+smth) % 26;
-                char ch = alph2.charAt(smth2);
-                newss = newss + ch;
+        String res = "";
+        message = message.toUpperCase();
+        for (int i = 0, j = 0; i < message.length(); i++)
+        {
+            char z =message.charAt(i);
+            if (z < 'A' || z > 'Z')
                 continue;
-            }
-            int smth2 = (keys+smth) % 26;
-            char ch = alphabet.charAt(smth2);
-            newss = newss + ch;
+            res += (char) ((z + key.charAt(j) - 2 * 'A') % 26 + 'A');
+            j = ++j % key.length();
         }
-        return newss;
+        return res;
     }
-
-
-
-    public static String decryptVigenere(String message, String key) {
-        String news="";
-        String alphabet="abcdefghijklmnopqrstuvwxyz";
-        String alph2="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        int keys=Integer.parseInt(key);
-        for(int i=0; i<=message.length()-1;i++) {
-            int smth = alphabet.indexOf(message.charAt(i));
-            if (smth==-1) {
-                smth = alph2.indexOf(message.charAt(i));
-                if (smth == -1) {
-                    news=news+message.charAt(i);
-                    continue;
-                }
-                int smth2 = (smth-keys) % 26;
-                char ch = alph2.charAt(smth2);
-                news = news + ch;
-                continue;
+    /* String yes = "";
+        message = message.toUpperCase();
+        key = key.toUpperCase();
+        String alpha="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        int j = 0;
+        for (int i = 0; i < message.length(); i++){
+            if (alpha.indexOf(message.charAt(i)) >= 0){
+                yes += alpha.charAt(alpha.indexOf(message.charAt(i)) + alpha.indexOf(key.charAt((i)%key.length())));
             }
-            int smth2 = (smth-keys) % 26;
-            char ch = alphabet.charAt(smth2);
-            news = news + ch;
-        }
-        return news;
-    }
+            else{
+                yes += message.charAt(i);
+                j += 1;
+                if(j>=key.length());
+                {
+                    j = 0;
+
+*/
 
 
-    public static void main(String[] args) {
+
+
+     public static String decryptVigenere (String message, String key) {
+
+         String res = "";
+         message = message.toUpperCase();
+         for (int i = 0, j = 0; i < message.length(); i++) {
+             char c = message.charAt(i);
+             if (c < 'A' || c > 'Z')
+                 continue;
+             res += (char) ((c - key.charAt(j) + 26) % 26 + 'A');
+             j = ++j % key.length();
+
+         }
+         return res;
+     }
+
+
+
+
+            public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+
 
         System.out.println("Would you like to \"encrypt\" or \"decrypt\" a message?");
         String command = scan.nextLine().trim().toLowerCase();
@@ -84,3 +100,4 @@ public class Vigenere {
         scan.close();
     }
 }
+
